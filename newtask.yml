@@ -1,0 +1,7 @@
+- name: create a file
+  file:
+    path: /tmp/mydata
+    state: touch
+    owner: sam
+    group: tech
+    mode: '0755'

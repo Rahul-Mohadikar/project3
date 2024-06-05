@@ -1,0 +1,12 @@
+---
+ - name: test importing
+   hosts: all
+   tasks:
+     - name: import task file
+       include_tasks: tasks.yml
+     - name: create user
+       user:
+         name: sam 
+         state: present
+     - name: import newtask file
+       include_tasks: newtask.yml

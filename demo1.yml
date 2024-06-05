@@ -1,0 +1,69 @@
+---
+ - name: this is first play
+   hosts: all
+   tasks:
+     - name: create user
+       user:
+         name: raj
+         uid: '2000'
+         group: admin
+         shell: /bin/bash
+ - name: this is second play
+   hosts: all
+   tasks:
+     - name: install vsftpd
+       yum:
+         name: vsftpd
+         state: present
+         enabled: yes
+     - name: install httpd
+       yum :
+         name: httpd
+         state: latest
+         enabled: yes
+     - name: postfix
+       yum:
+         name: postfix
+         state: present
+         enabled: yes
+ - name: third play
+   hosts: all
+   tasks:
+     - name: start vsftpd service
+       service:
+         name: vsftpd
+         start: started
+     - name: start httpd
+       service:
+         name: httpd
+         state: started
+     - name: start postfix service
+       service:
+         name: postfix
+         state: started
+ - name: fourth play
+   hosts: all
+   tasks:
+     - name: create file
+       file:
+         path: /tmp/data
+         state: touch
+         mode: '0700'
+     - name: create directory
+       file:
+         path: /etc/data
+         state: directory
+         mode: '0700'
+         owner: admin
+ - name: fifth play
+   hosts: all
+   tasks:
+     - name: copy file
+       copy:
+         src: sample
+         dest: /tmp/data
+         owner: admin
+         mode: '0700'
+...
+
+

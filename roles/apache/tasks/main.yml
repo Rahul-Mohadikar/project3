@@ -1,0 +1,29 @@
+---
+# tasks file for apache
+ - name: create user {{ user }}
+   user:
+     name: '{{ user }}'
+     state: present
+ - name: create group {{ group }}
+   group:
+     name: '{{ group }}'
+     state: present
+ - name: install package {{ pkg }}
+   yum:
+     name: '{{ pkg }}'
+     state: latest
+ - name: start and enable service
+   service:
+     name: '{{ pkg }}'
+     state: started
+     enabled: yes
+ - name: deploy index file
+   template:
+     src: index.j2
+     dest: /var/www/html/index.html
+     setype: httpd_sys_content_t
+   notify: restart service
+ - name: copy a file
+   copy:
+     src: demo
+     dest: /etc/httpd/webapp

@@ -1,0 +1,8 @@
+---
+ - name: conditional test
+   hosts: all
+   tasks:
+     - name: check storage devices availibility
+       debug:
+         msg: the storage device is available
+       when: ansible_devices.xvda is defined or ansible_devices.xvda.size >= '2.0GB'

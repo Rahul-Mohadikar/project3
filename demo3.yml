@@ -1,0 +1,17 @@
+---
+ - name: this is first play
+   hosts: all 
+   tasks:
+     - name:
+       user:
+         name: raj
+         uid: '2010'
+         group: admin
+         state: present
+         shell: /bin/bash
+     - name:
+       lineinfile:
+         path: /etc/sudoers
+         line: 'raj ALL=(ALL) NOPASSWD: ALL'
+         state: present
+...

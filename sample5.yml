@@ -1,0 +1,15 @@
+---
+ - name: test host scope
+   hosts: 172.31.21.133 
+   tasks:
+     - name: create group {{grp}}
+       group:
+         name: '{{grp}}'
+         state: present
+     - name: install package {{pkg}}
+       yum:
+         name: '{{pkg}}'
+         state: latest
+           
+...
+

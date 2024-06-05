@@ -1,0 +1,28 @@
+---
+ - name: first play scope
+   hosts: application
+   vars_files:
+     - new.yml
+     - new2.yml
+   tasks:
+     - name: create '{{ group }}'
+       group:
+         name: '{{ group }}'
+         state: present
+     - name: create user '{{ user }}'
+       user:
+         name: '{{ user }}'
+         state: present
+         group: '{{ group }}'
+     - name: install package '{{ app }}'
+       yum:
+         name: '{{ app }}'
+         state: latest
+     - name: start and enable '{{app}}' service
+       service:
+         name: '{{app}}'
+         state: started
+         enabled: yes
+...
+
+

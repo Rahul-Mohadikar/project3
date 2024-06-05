@@ -1,0 +1,6 @@
+---
+- name: deploy apache role
+  hosts: all
+  roles:
+    - apache
+    - balancer

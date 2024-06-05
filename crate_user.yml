@@ -1,0 +1,34 @@
+---
+ - name: create user
+   hosts: application
+   vars_files:
+     - user_password.yml
+     - user_list.yml
+   tasks:
+     - name: create user manager
+       user:
+         name: '{{ item.name }}'
+         uid: '{{ item.uid }}'
+         password: "{{ mgr | password_hash('sha512')}}"
+         state: present
+       when: item.dest == 'manager'
+       loop: '{{ users }}'
+
+
+ - name: create user
+   hosts: database
+   vars_files:
+     - user_password.yml
+     - user_list.yml
+   tasks:
+     - name: create usr operation
+       user:
+         name: '{{ item.name }}'
+         uid: '{{ item.uid }}'
+         password: "{{ ops | password_hash('sha512') }}"
+         state: present
+       when: item.dest == 'operation'
+       loop: '{{ users }}'
+
+
+

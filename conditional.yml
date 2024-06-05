@@ -1,0 +1,9 @@
+---
+ - name: test conditional
+   hosts: all
+   tasks:
+     - name: instsall package of the architecture is 64 bit
+       yum:
+         name: httpd
+         state: latest
+       when: ansible_architecture == 'x86_64'

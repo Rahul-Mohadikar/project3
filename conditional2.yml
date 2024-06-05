@@ -1,0 +1,8 @@
+---
+ - name: test conditional
+   hosts: all
+   tasks:
+     - name: check storage device avaibility 
+       debug:
+         msg: the storage device is available
+       when: ansible_devices.xvda is defined    

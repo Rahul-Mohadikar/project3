@@ -1,0 +1,9 @@
+---
+ - name: test jinja2 template
+   hosts: all
+   tasks:
+     - name: deploy template
+       template:
+         src: jinja.j2
+         dest: /var/hostinfo.txt
+...

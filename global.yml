@@ -1,0 +1,9 @@
+---
+ - name: test globale scope and precedance
+   hosts: all
+   tasks:
+     - name: create group {{grp}}
+       group:
+         name: '{{grp}}'
+         state: present
+...

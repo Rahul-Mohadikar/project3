@@ -1,0 +1,13 @@
+---
+ - name: test fork
+   hosts: all
+   tasks:
+     - name: install package
+       yum:
+         name: mariadb
+         state: latest
+     - name: install httpd
+       yum:
+         name: httpd
+         state: latest
+

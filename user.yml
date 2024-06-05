@@ -1,0 +1,25 @@
+---
+ - name: Create users
+   hosts: all
+   vars_files:
+     - user_password.yml
+     - user_list.yml
+   tasks:
+     - name: Create users with destination manager
+       user:
+         name: "{{ item.name }}"
+         uid: "{{ item.uid }}"
+         password: "{{ mgr | password_hash('sha512') }}"
+         state: present
+       loop: "{{ users }}"
+       when: item.dest == 'manager' 
+
+     - name: Create users with destination operation
+       user:
+         name: "{{ item.name }}"
+         uid: "{{ item.uid }}"
+         password: "{{ ops | password_hash('sha512')}}"
+         state: present
+       loop: "{{ users }}"
+       when: item.dest == 'operation' 
+

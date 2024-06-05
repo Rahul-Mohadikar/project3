@@ -1,0 +1,14 @@
+---
+ - name: create group
+   hosts: all 
+   tasks:
+     - name: create group
+       group:
+         name: operations
+         state: present
+ - name: importing playbook
+   import_playbook: playbooks.yml
+ - name: importing playbook
+   import_playbook: playbook2.yml
+ - name: importing playbook
+   import_playbook: conditional.yml

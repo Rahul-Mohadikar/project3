@@ -1,0 +1,13 @@
+---
+ - name: facts
+   hosts: all
+   tasks:
+     - name: print msg
+       debug:
+         msg: the ip address is {{ ansible_default_ipv4.address }} of {{ ansible_fqdn }} having architecture {{ ansible_architecture }} and os {{ ansible_distribution }} bios version {{ ansible_bios_version }} time {{ ansible_date_time.time }} date {{ ansible_date_time.date }} gateway {{ ansible_default_ipv4.gateway }} hostname {{ ansible_hostname }}
+
+
+
+
+...
+        

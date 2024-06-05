@@ -1,0 +1,23 @@
+---
+ - name: test ansible handlers
+   hosts: all
+   ignore_errors: yes
+   tasks:
+     - name: install package
+       yum:
+         name: httpd
+         state: latest
+       notify: manage services    
+     - name: create a file
+       lineinfile:
+         path: /tmp/store
+         line: hello world
+         create: yes
+   handlers:
+     - name: manage services
+       service:
+         name: httpd
+         state: started
+         enabled: yes
+
+

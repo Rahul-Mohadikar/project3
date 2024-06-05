@@ -1,0 +1,12 @@
+---
+ - name: test loop
+   hosts: all
+   vars_files:
+     - loopvar.yml
+   tasks:
+     - name: create multiple group
+       group:
+         name: '{{ item }}'
+         state: present
+       loop: '{{ grp }}'
+

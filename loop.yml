@@ -1,0 +1,14 @@
+---
+ - name: test loop
+   hosts: all 
+   gather_facts: no
+   tasks:
+     - name: create user
+       user:
+         name: '{{item}}'
+         state: present
+       loop:
+         - natasha
+         - harry
+         - raj
+

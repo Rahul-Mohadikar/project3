@@ -1,0 +1,22 @@
+---
+ - name: this is first play
+   hosts: all
+   tasks:
+     - name: this is first group 
+       group:
+         name: devops
+         state: present
+     - name: this is second task
+       user:
+         name: raju
+         state: present 
+         group: devops
+ - name: this is second play
+   hosts: all
+   tasks:
+     - name: this is first task in second file
+       file:
+         path: /tmp/sample
+         state: touch
+...
+         

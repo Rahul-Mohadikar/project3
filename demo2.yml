@@ -1,0 +1,26 @@
+---
+ - name: this is first play 
+   hosts: all
+   tasks:
+     - name: this is first task to install packages
+       yum:
+         name: httpd
+         state: latest
+     - name: this is second task to manage service
+       service:
+         name: httpd
+         state: started
+         enabled: yes
+     - name: this is third task to create index document
+       lineinfile:
+         path: /var/www/html/index.html
+         line: ' <h1> hello world </h1>'
+         create: yes
+         setype: httpd_sys_content_t
+     - name: restart service
+       service:
+         name: httpd
+         state: restarted
+...
+        
+       
